@@ -1,4 +1,6 @@
-﻿namespace JsonRepairUtils;
+﻿using System;
+
+namespace JsonRepairUtils;
 
 /// <summary>
 /// Represents an error that occurs during JSON repair.

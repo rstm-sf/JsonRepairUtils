@@ -1,4 +1,6 @@
-﻿namespace JsonRepairUtils;
+﻿using System;
+
+namespace JsonRepairUtils;
 
 /// <summary>
 /// This class provides extension methods for the string class.
