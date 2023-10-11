@@ -1,0 +1,90 @@
+﻿name: 'Deploy'
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  configuration: Release
+  zip-name: artifact-nuget
+  release-draft: false
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        sdk:
+          - version: 7.0.x
+
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    steps:
+
+      - uses: actions/checkout@v3
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.sdk.version }}
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --no-restore -c ${{ env.configuration }}
+
+      - name: Test
+        run: dotnet test --no-build --verbosity normal -c ${{ env.configuration }}
+
+      - name: Pack nugets
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: dotnet pack -c ${{ env.configuration }} --no-build
+
+      - name: Upload artifact
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.zip-name }}
+          path: |
+            ./src/JsonRepairUtils/bin/${{ env.configuration }}/*.nupkg
+            ./src/JsonRepairUtils/bin/${{ env.configuration }}/*.snupkg
+
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: [build]
+    steps:
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: ${{ env.zip-name }}
+
+      - name: Variables
+        id: vars
+        shell: pwsh
+        run: |
+          $fileName = Split-Path -Path "*.nupkg" -LeafBase -Resolve
+          Write-Output "::set-output name=version::$($filename.Substring("JsonRepairUtils.".Length))"
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.vars.outputs.version }}
+          draft: ${{ env.release-draft }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.sdk.version }}
+
+      - name: Push nuget
+        if: ${{ env.release-draft == 'false' }}
+        run: dotnet nuget push --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
