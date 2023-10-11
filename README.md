@@ -1,4 +1,4 @@
-[![.NET](https://github.com/thijse/JsonRepairSharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/thijse/JsonRepairSharp/actions/workflows/dotnet.yml)
+[![.NET](https://github.com/rstm-sf/JsonRepairUtils/actions/workflows/dotnet_test.yml/badge.svg)](https://github.com/rstm-sf/JsonRepairUtils/actions/workflows/dotnet.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 
