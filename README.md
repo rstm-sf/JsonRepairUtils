@@ -1,6 +1,6 @@
+[![Nuget](https://img.shields.io/nuget/v/https%3A%2F%2Fwww.nuget.org%2Fpackages%2FJsonRepairUtils)](https://www.nuget.org/packages/JsonRepairUtils)
 [![.NET](https://github.com/rstm-sf/JsonRepairUtils/actions/workflows/dotnet_test.yml/badge.svg)](https://github.com/rstm-sf/JsonRepairUtils/actions/workflows/dotnet.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-
 
 # JsonRepairUtils
 
