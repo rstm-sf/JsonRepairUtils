@@ -87,4 +87,4 @@ jobs:
 
       - name: Push nuget
         if: ${{ env.release-draft == 'false' }}
-        run: dotnet nuget push --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push *nupkg --api-key ${{ secrets.NUGET_TOKEN }} --source https://api.nuget.org/v3/index.json
