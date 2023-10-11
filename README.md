@@ -10,15 +10,13 @@ The jsonrepair library is basically an extended JSON parser. It parses the provi
 
 The library has many uses, such as:
 
-1. Convert from an a Word document
-1. Convert from objects with a JSON-like structure, such as Javascript
-1. Convert from a string containing a JSON document
-1. Convert from MongoDB output
-1. Convert from Newline Delimited JSON logs
-1. Convert from JSON dialects
-1. Convert from Truncated or corrupted JSON.
-
-But with the advent of Language Model Models (LLMs) there is yet another use-case. LLMs are notoriously bad in consistently outputting well-formed datastructures, even as simple as JSON. Requiry-ing is expensive and time consuming.  Jsonrepair comes to the rescue by repair these JSON modules files, and increasing changes of smooth processing.
+- Convert from an a Word document
+- Convert from objects with a JSON-like structure, such as Javascript
+- Convert from a string containing a JSON document
+- Convert from MongoDB output
+- Convert from Newline Delimited JSON logs
+- Convert from JSON dialects
+- Convert from Truncated or corrupted JSON.
 
 *The library can fix the  following issues:*
 
