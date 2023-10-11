@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonRepairUtils", "JsonRepairUtils\JsonRepairUtils.csproj", "{1C048ADB-471F-403B-B112-843431F4B5B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonRepairUtils.Tests", "JsonRepairUtils.Tests\JsonRepairUtils.Tests.csproj", "{D15AC1EA-B5B4-4629-991B-4F180EF361CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C048ADB-471F-403B-B112-843431F4B5B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C048ADB-471F-403B-B112-843431F4B5B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C048ADB-471F-403B-B112-843431F4B5B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C048ADB-471F-403B-B112-843431F4B5B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15AC1EA-B5B4-4629-991B-4F180EF361CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15AC1EA-B5B4-4629-991B-4F180EF361CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15AC1EA-B5B4-4629-991B-4F180EF361CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15AC1EA-B5B4-4629-991B-4F180EF361CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
