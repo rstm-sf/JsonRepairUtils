@@ -17,6 +17,8 @@
     <Copyright>Copyright (c) 2023 JsonRepairUtils Contributors</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/rstm-sf/JsonRepairUtils</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>
