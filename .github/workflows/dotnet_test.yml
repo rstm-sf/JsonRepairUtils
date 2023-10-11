@@ -1,0 +1,38 @@
+name: 'Tests'
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  configuration: Release
+
+jobs:
+  build:
+
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+        sdk:
+          - version: 6.0.x
+          - version: 7.0.x
+
+    name: ${{ matrix.os }} / ${{ matrix.sdk.version }}
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ matrix.sdk.version }}
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c ${{ env.configuration }}
+    - name: Test
+      run: dotnet test --no-build --verbosity normal -c ${{ env.configuration }}

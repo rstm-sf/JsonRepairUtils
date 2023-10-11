@@ -1,0 +1,20 @@
+<Project>
+
+  <PropertyGroup>
+    <LangVersion>11</LangVersion>
+    <IsPackable>false</IsPackable>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionSuffix>alpha</VersionSuffix>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Description>A utility to repair invalid JSON documents</Description>
+    <Authors>JsonRepairUtils Contributors</Authors>
+    <Company>JsonRepairUtils Contributors</Company>
+    <Copyright>Copyright (c) 2023 JsonRepairUtils Contributors</Copyright>
+  </PropertyGroup>
+
+</Project>
