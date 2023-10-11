@@ -1,12 +1,12 @@
 [![.NET](https://github.com/thijse/JsonRepairSharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/thijse/JsonRepairSharp/actions/workflows/dotnet.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![JSOn Repair logo](/Assets/logo_small.png?raw=true )
-# JsonRepair Sharp
 
-Jsonrepair Sharp is a near-literal translation of the TypeScript JsonRepair library, see https://github.com/josdejong/jsonrepair
+# JsonRepairUtils
 
-The jsonrepair library is basically an extended JSON parser. It parses the provided JSON document character by character. When it encounters a non-valid JSON structures it wil look to see it it can reconstruct the intended JSON. For example, after encountering an opening bracket {, it expects a key wrapped in double quotes. When it encounters a key without quotes, or wrapped in other quote characters, it will change these to double quotes instead.
+JsonRepairUtils is a near-literal translation of the TypeScript JsonRepair library, see https://github.com/josdejong/jsonrepair
+
+The jsonrepair library is basically an extended JSON parser. It parses the provided JSON document character by character. When it encounters a non-valid JSON structures it wil look to see it it can reconstruct the intended JSON. For example, after encountering an opening bracket `{`, it expects a key wrapped in double quotes. When it encounters a key without quotes, or wrapped in other quote characters, it will change these to double quotes instead.
 
 The library has many uses, such as:
 
@@ -42,9 +42,6 @@ But with the advent of Language Model Models (LLMs) there is yet another use-cas
     { "id": 2, "name": "Sarah" }
     ```
 
-*In LLM mode*
-- Strip characters heading the JSON opening brace and  trailing the JSON closing brace.
-
 
 ## Use
 
@@ -54,71 +51,33 @@ Read the background article ["How to fix JSON and validate it with ease"](https:
 ## Code example
 
 ```cs
+var jsonRepair = JsonRepair();
 
 // Enable throwing exceptions when JSON code can not be repaired or even understood (enabled by default)
-JsonRepair.ThrowExceptions = true;
+jsonRepair.ThrowExceptions = true;
 
-// Set context as LLM or Other. This will repair the json slightly differently. (Other by default)
-JsonRepair.Context         = Other;
-
- try
- {
+try
+{
      // The following is invalid JSON: is consists of JSON contents copied from 
      // a JavaScript code base, where the keys are missing double quotes, 
      // and strings are using single quotes:
      string json = "{name: 'John'}";
-     string repaired = JSONRepair.JsonRepair(json);
+     string repaired = jsonRepair.Repair(json);
      Console.WriteLine(repaired);
      // Output: {"name": "John"}
- }
- catch (JSONRepairError err)
- {
+}
+catch (JsonRepairError err)
+{
      Console.WriteLine(err.Message);
      Console.WriteLine("Position: " + err.Data["Position"]);
- }
+}
 ```
-
-### Command Line Interface (CLI)
-
-The github archive comes with a `jsonrepair` cli tool, it can be used on the command line. To use, build JsonRepair-CLI.
-
-Usage:
-
-```
-$ jsonrepair "inputfilename.json" {OPTIONS}
-```
-
-Options:
-
-```
---version,   -v                       Show application version
---help,      -h                       Show help
---new,       -n "outputfilename.json" Write to new file
---overwrite, -o                       Replace the input file
---llm,       -l                       Parse in LLM mode
-```
-
-Example usage:
-
-```
-$ jsonrepair "broken.json"                         # Repair a file, output to console
-$ jsonrepair "broken.json" > "repaired.json"       # Repair a file, output to command line and pipe to file
-$ jsonrepair "broken.json" -n -l "repaired.json"   # Repair a file in LLM mode, output to command line and pipe to file
-$ jsonrepair "broken.json" --overwrite             # Repair a file, replace the input json file
-```
-
-### GUI
-
-The archive also comes with a minimal GUI that shows a somewhat simplistic diff between the original and fixed JSON
-![JSOn Repair GUI](/Assets/JsonRepairGui.png?raw=true )
-This GUI heavily leans on the awesome [FastColoredTextBox](https://github.com/PavelTorgashov/FastColoredTextBox) library and the the diff sample in particular.
-
-
 
 ## Alternatives:
 
 Similar libraries:
 
+- https://github.com/thijse/JsonRepairSharp (initial)
 - https://github.com/josdejong/jsonrepair
 - https://github.com/RyanMarcus/dirty-json
 
